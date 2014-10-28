@@ -28,7 +28,7 @@ public cl">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
 
 	
-	<link href="http://cdn.bootcss.com/highlight.js/8.2/styles/github.min.css" rel="stylesheet">
+	<link href="http://cdn.bootcss.com/highlight.js/8.2/styles/default.min.css" rel="stylesheet">
 	
 </head>
 
@@ -53,8 +53,6 @@ public cl">
 						<li><a href="/">首页</a></li>
 					
 						<li><a href="/archives">归档</a></li>
-					
-						<li><a href="/categories">分类</a></li>
 					
 						<li><a href="http://qalong.github.io/">关于我</a></li>
 					
@@ -82,7 +80,7 @@ public cl">
     </p>
   <p class="article-time">
     <time datetime="2014-10-27T09:36:34.000Z" itemprop="datePublished">Oct 27 2014</time>
-    Updated:<time datetime="2014-10-28T03:09:10.000Z" itemprop="dateModified">Oct 28 2014</time>
+    Updated:<time datetime="2014-10-28T08:11:46.000Z" itemprop="dateModified">Oct 28 2014</time>
     
   </p>
 </header>
@@ -127,13 +125,28 @@ public class Main {
     add(&quot;a&quot;);
     add(&quot;asdfs&quot;);
 }
-</code></pre><p>其实看看反编译后的代码就都明白了：</p>
-<p>``` java Main.class<br>import java.io.PrintStream;<br>import java.util.ArrayList;</p>
-<p>public class Main<br>{<br>  public static void main(String[] paramArrayOfString)<br>  {<br>    ArrayList local1 = new ArrayList()<br>    {<br>      public boolean add(String paramAnonymousString) {<br>        return super.add(“LST-“ + paramAnonymousString);<br>      }<br>    };<br>    for (String str : local1)<br>      System.out.println(str);<br>  }<br>}</p>
-<pre><code>
-
-```java Main$1内部类
+</code></pre><p>其实看看反编译后的代码就都明白了：<br>Main.class</p>
+<pre><code class="java">import java.io.PrintStream;
 import java.util.ArrayList;
+
+
+public class Main
+{
+  public static void main(String[] paramArrayOfString)
+  {
+    ArrayList local1 = new ArrayList()
+    {
+      public boolean add(String paramAnonymousString) {
+        return super.add(&quot;LST-&quot; + paramAnonymousString);
+      }
+    };
+    for (String str : local1)
+      System.out.println(str);
+  }
+}
+</code></pre>
+<p>Main$1内部类:</p>
+<pre><code class="java">import java.util.ArrayList;
 
 
 final class Main$1 extends ArrayList&lt;String&gt;
@@ -151,7 +164,8 @@ final class Main$1 extends ArrayList&lt;String&gt;
     return super.add(&quot;LST-&quot; + paramString);
   }
 }
-</code></pre>  
+</code></pre>
+  
 	</div>
 		<footer class="article-footer clearfix">
 
